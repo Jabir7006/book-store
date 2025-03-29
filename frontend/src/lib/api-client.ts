@@ -14,7 +14,7 @@ class ApiClient {
     };
 
     const response = await fetch(
-      `http://localhost:1337/api/${url}?populate=cover`,
+      `http://localhost:1337/api/${url}?populate=*`,
       {
         method,
         body: body ? JSON.stringify(body) : undefined,

@@ -6,10 +6,14 @@ import { Button } from "./ui/button";
 interface BookCardProps {
   id: number;
   title: string;
-  author: string;
-  cover: string;
-  originalPrice: number;
-  discountedPrice: number;
+  author: {
+    name: string;
+  };
+  cover: {
+    url: string;
+  };
+  regularPrice: number;
+  discountPrice: number;
   discountPercentage: number;
 }
 
@@ -18,8 +22,8 @@ export default function BookCard({
   title,
   author,
   cover,
-  originalPrice,
-  discountedPrice,
+  regularPrice,
+  discountPrice,
   discountPercentage,
 }: BookCardProps) {
   return (
@@ -30,7 +34,7 @@ export default function BookCard({
           className="relative aspect-[3/4] bg-gray-100"
         >
           <Image
-            src={cover.url}
+            src={`${process.env.NEXT_PUBLIC_API_URL}${cover?.url}`}
             alt={title}
             fill
             sizes="(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
@@ -48,14 +52,14 @@ export default function BookCard({
           </h3>
           <p className="text-gray-600 text-xs mb-2 flex items-center gap-1">
             <BookOpen size={12} />
-            <span>{author}</span>
+            <span>{author?.name}</span>
           </p>
           <div className="mt-auto pt-2">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-sm">৳{discountedPrice}</span>
-              {originalPrice > discountedPrice && (
+              <span className="font-bold text-sm">৳{discountPrice}</span>
+              {regularPrice > discountPrice && (
                 <span className="text-gray-500 text-xs line-through">
-                  ৳{originalPrice}
+                  ৳{regularPrice}
                 </span>
               )}
             </div>
