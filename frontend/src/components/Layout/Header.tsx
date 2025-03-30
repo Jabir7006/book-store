@@ -25,6 +25,7 @@ const Header = () => {
                   src="/logo.png"
                   alt="Rokomari"
                   fill
+                  sizes="(max-width: 768px) 112px, 128px"
                   className="object-contain"
                   priority
                 />

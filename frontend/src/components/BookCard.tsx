@@ -2,9 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
 import { Button } from "./ui/button";
-
+import { calculateDiscountPercentage } from "@/utils/calculateDiscountPercentage";
 interface BookCardProps {
-  id: number;
+  documentId: string;
   title: string;
   author: {
     name: string;
@@ -18,7 +18,7 @@ interface BookCardProps {
 }
 
 export default function BookCard({
-  id,
+  documentId,
   title,
   author,
   cover,
@@ -26,11 +26,12 @@ export default function BookCard({
   discountPrice,
   discountPercentage,
 }: BookCardProps) {
+  const calculatedDiscountPercentage = calculateDiscountPercentage(discountPrice, regularPrice);
   return (
     <div className="group">
       <div className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 h-full flex flex-col overflow-hidden">
         <Link
-          href={`/books/${id}`}
+          href={`/books/${documentId }`}
           className="relative aspect-[3/4] bg-gray-100"
         >
           <Image
@@ -40,9 +41,9 @@ export default function BookCard({
             sizes="(max-width: 768px) 33vw, (max-width: 1200px) 25vw, 20vw"
             className="object-cover group-hover:scale-105 transition-transform duration-300"
           />
-          {discountPercentage > 0 && (
+          {calculatedDiscountPercentage > 0 && (
             <div className="absolute top-0 right-0 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-bl-lg">
-              {discountPercentage}% ছাড়
+              {calculatedDiscountPercentage}% ছাড়
             </div>
           )}
         </Link>

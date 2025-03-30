@@ -16,11 +16,10 @@ type Book = {
 
 export default async function Home() {
   const books = await apiClient.get<{ data: Book[] }>("books");
-  console.log(books);
   return (
     <>
       <HeroSlider />
       <BookSlider books={books.data} />
     </>
-  );
+  ); 
 }
