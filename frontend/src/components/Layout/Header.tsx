@@ -1,18 +1,21 @@
 import Link from "next/link";
 import { Container } from "../ui/Container";
-import { ShoppingCart, User } from "lucide-react";
+import { User } from "lucide-react";
 import { Button } from "../ui/button";
 import Image from "next/image";
 import Searchbar from "../Searchbar";
 import MiniHeader from "./MiniHeader";
 import MenuToggle from "../MenuToggle";
 import MobileSearchWrapper from "./MobileSearchWrapper";
+import CartIcon from "./CartIcon";
+import HeaderScrollShadow from "./HeaderScrollShadow";
 
 const Header = () => {
   return (
     <>
       <MiniHeader />
-      <header className="py-3 md:py-4 border-b">
+      <header className="py-3 md:py-4 border-b bg-white sticky top-0 z-50">
+        <HeaderScrollShadow />
         <Container>
           <div className="flex items-center justify-between gap-4">
             {/* Mobile Menu icon */}
@@ -55,14 +58,7 @@ const Header = () => {
                 </Link>
               </Button>
 
-              <Button variant="ghost" className="relative" asChild>
-                <Link href="/cart">
-                  <ShoppingCart size={20} />
-                  <span className="absolute -top-1 -right-1 bg-blue-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center">
-                    0
-                  </span>
-                </Link>
-              </Button>
+              <CartIcon />
             </div>
           </div>
         </Container>

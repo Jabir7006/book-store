@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { BookOpen } from "lucide-react";
-import { Button } from "./ui/button";
 import { calculateDiscountPercentage } from "@/utils/calculateDiscountPercentage";
+import AddToCartBtn from "./AddToCartBtn";
 interface BookCardProps {
   documentId: string;
   title: string;
@@ -24,7 +24,6 @@ export default function BookCard({
   cover,
   regularPrice,
   discountPrice,
-  discountPercentage,
 }: BookCardProps) {
   const calculatedDiscountPercentage = calculateDiscountPercentage(discountPrice, regularPrice);
   return (
@@ -67,12 +66,7 @@ export default function BookCard({
           </div>
         </div>
 
-        <Button
-          variant="outline"
-          className="w-full border border-blue-500 cursor-pointer hover:bg-blue-500 hover:text-white transition-all duration-300"
-        >
-          Add to Cart
-        </Button>
+        <AddToCartBtn book={{id : documentId.toString(), title, description: "", author: author.name, cover: cover.url, regularPrice, discountPrice}}/>
       </div>
     </div>
   );

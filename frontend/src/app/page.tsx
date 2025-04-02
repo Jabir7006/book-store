@@ -1,18 +1,9 @@
 import BookSlider from "@/components/BookSlider/BookSliderClient";
 import HeroSlider from "@/components/HeroSlider";
 import apiClient from "@/lib/api-client";
+import { Book } from "@/types/book.type";
 
-type Book = {
-  id: number;
-  title: string;
-  author: string;
-  description: string;
-  coverImage: string;
-  originalPrice: number;
-  discountedPrice: number;
-  discountPercentage: number;
-  slug: string;
-};
+
 
 export default async function Home() {
   const books = await apiClient.get<{ data: Book[] }>("books");

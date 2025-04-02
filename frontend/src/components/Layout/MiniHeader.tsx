@@ -4,7 +4,7 @@ import { Container } from "../ui/Container";
 
 const MiniHeader = () => {
   return (
-    <div className="bg-[#F5F5F5]">
+    <div className="bg-white">
       <Container>
         <div className="flex justify-between items-center py-2">
           <div>

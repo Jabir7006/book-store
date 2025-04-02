@@ -3,30 +3,17 @@
 import { Search } from "lucide-react";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import useBooks from "@/hooks/useBooks";
 
 const Searchbar = () => {
-  const { searchQuery, setSearchQuery } = useBooks();
   const router = useRouter();
 
-  console.log(searchQuery);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery)}`);
-    }
-  };
-
   return (
-    <form onSubmit={handleSubmit} className="w-full">
+    <form className="w-full">
       <div className="relative">
         <input
           type="text"
           placeholder="Search for books, electronics..."
           className="w-full px-4 py-2 border rounded-full pr-10 focus:outline-none focus:ring-1 focus:ring-primary border-blue-500 text-sm"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
           aria-label="Search"
         />
         <button

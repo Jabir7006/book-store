@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Container } from "./ui/Container";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // Custom prev arrow component
@@ -104,7 +103,7 @@ export default function HeroSlider(): React.ReactNode {
 
   if (!isClient) {
     return (
-      <div className="relative aspect-[16/5] sm:aspect-[16/5] md:aspect-[16/5] lg:aspect-[21/5] bg-gray-100 animate-pulse">
+      <div className="relative aspect-[16/5] sm:aspect-[16/5] md:aspect-[16/5] lg:aspect-[21/5] bg-gray-100 animate-pulse w-full">
         <div className="absolute inset-0 flex items-center justify-center">
           <p className="sr-only">Loading slider...</p>
         </div>
@@ -113,27 +112,25 @@ export default function HeroSlider(): React.ReactNode {
   }
 
   return (
-    <div className="relative overflow-hidden bg-gray-50 my-4">
-      <Container>
-        <div className="relative rounded-lg overflow-hidden shadow-sm">
-          <Slider {...settings}>
-            {bannerSlides.map((slide) => (
-              <div key={slide.id} className="relative focus:outline-none">
-                <div className="relative aspect-[16/5] sm:aspect-[16/5] md:aspect-[16/5] lg:aspect-[21/5]">
-                  <Image
-                    src={slide.image}
-                    alt={slide.alt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
-                    className="object-cover object-center"
-                    priority={slide.id === 1}
-                  />
-                </div>
+    <div className="relative overflow-hidden bg-gray-50 my-4 w-full">
+      <div className="relative overflow-hidden shadow-sm w-full">
+        <Slider {...settings}>
+          {bannerSlides.map((slide) => (
+            <div key={slide.id} className="relative focus:outline-none">
+              <div className="relative aspect-[16/5] sm:aspect-[16/5] md:aspect-[16/5] lg:aspect-[21/5] w-full">
+                <Image
+                  src={slide.image}
+                  alt={slide.alt}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                  priority={slide.id === 1}
+                />
               </div>
-            ))}
-          </Slider>
-        </div>
-      </Container>
+            </div>
+          ))}
+        </Slider>
+      </div>
     </div>
   );
 }
